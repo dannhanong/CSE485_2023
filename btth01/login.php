@@ -1,5 +1,5 @@
 
-    <?php include 'Components/header/header_login.php'?>
+    <?php include 'Components/header_login.php'?>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="d-flex justify-content-center h-100">
@@ -44,4 +44,4 @@
 
         </div>
     </main>
-    <?php include 'Components/footer/footer.php'?>
+    <?php include 'Components/footer.php'?>
