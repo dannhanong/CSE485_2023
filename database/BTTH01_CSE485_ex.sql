@@ -83,3 +83,25 @@ BEGIN
 END //
 
 DELIMITER ;
+
+DELIMITER //
+CREATE FUNCTION kTraLogin(tk varchar(50), mk varchar(50))
+RETURNS int
+READS SQL DATA
+BEGIN
+	declare result int;
+    if exists (select * from users where username = tk) then
+		if exists (select * from users where username = tk and pass = mk) then
+			set result = 1; -- đúng 
+		else
+			set result = -1; -- sai mật khẩu
+		end if;
+        else
+			set result = -2; -- sai tài khoản
+		end if;
+        return result;
+END //
+DELIMITER ;
+
+select kTraLogin ('abc123', 'abc123')
+

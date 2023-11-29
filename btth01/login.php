@@ -1,18 +1,6 @@
 <?php
-    try{
-        $conn = new PDO("mysql:host=localhost;dbname=BooksManagementSystem","root","123456");
-
-        $sql = "select Title, PublishedYear from Books";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-
-        $books = $stmt->fetchAll();
-
-    }catch(PDOException $e){
-        echo $e->getMessage();
-    }
+    include './admin/connection.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +17,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
                 <div class="my-logo">
+        
                     <a class="navbar-brand" href="#">
                         <img src="images/logo2.png" alt="" class="img-fluid">
                     </a>
@@ -67,14 +56,14 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form method="POST">
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" id="txtUser" name="txtUser"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" placeholder="username" >
                             </div>
 
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
+                                <span class="input-group-text" id="txtPass" name="txtPass"><i class="fas fa-key"></i></span>
                                 <input type="text" class="form-control" placeholder="password" >
                             </div>
                             
@@ -102,5 +91,9 @@
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <?php
+        $userName = $_POST['txtUser'];
+        echo $userName;
+    ?>
 </body>
 </html>
