@@ -35,7 +35,7 @@
                     <img src="images/songs/cayvagio.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="detail.php" class="text-decoration-none">Cây, lá và gió</a>
+                            <a href="detail.php?title=<?= urlencode('Cây và gió') ?>" class="text-decoration-none">Cây và gió</a>
                         </h5>
                     </div>
                 </div>
@@ -46,29 +46,30 @@
                     <img src="images/songs/csmt.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="detail.php" class="text-decoration-none">Cuộc sống mến thương</a>
+                            <a href="detail.php?title=<?= urlencode('Ôi Cuộc Sống Mến Thương') ?>" class="text-decoration-none">Cuộc sống mến thương</a>
                         </h5>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-3">
-                <div class="card mb-2" style="width: 100%;">
-                    <img src="images/songs//longme.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            <a href="detail.php" class="text-decoration-none">Lòng mẹ</a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
+    <div class="card mb-2" style="width: 100%;">
+        <img src="images/songs/longme.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title text-center">
+                <a href="detail.php?title=<?= urlencode('Lòng mẹ') ?>" class="text-decoration-none">Lòng mẹ</a>
+            </h5>
+        </div>
+    </div>
+</div>
+
 
             <div class="col-sm-3">
                 <div class="card mb-2" style="width: 100%;">
                     <img src="images/songs/phoipha.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="detail.php" class="text-decoration-none">Phôi pha</a>
+                            <a href="detail.php?title=<?= urlencode('Phôi pha') ?>" class="text-decoration-none">Phôi pha</a>
                         </h5>
                     </div>
                 </div>
@@ -79,7 +80,7 @@
                     <img src="images/songs/noitinhyeubatdau.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center my-title">
-                            <a href="detail.php" class="text-decoration-none">Nơi tình yêu bắt đầu</a>
+                            <a href="detail.php?title=<?= urlencode('Nơi tình yêu bắt đầu') ?>" class="text-decoration-none">Nơi tình yêu bắt đầu</a>
                         </h5>
                     </div>
                 </div>
