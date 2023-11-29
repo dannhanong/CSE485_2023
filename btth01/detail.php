@@ -1,6 +1,11 @@
 
 <?php include 'Components/header/header.php';
-        include './admin/connection.php';
+         try{
+            $conn = new PDO("mysql:host=localhost;dbname=BTTH01_CSE485","root","");
+          
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
         $title = urldecode($_GET['title']);
         $sql = "SELECT ten_bhat,tomtat,tieude FROM baiviet WHERE ten_bhat = '$title'";
         $sql2 =  "SELECT ten_tgia FROM tacgia WHERE ma_tgia = (select ma_tgia from baiviet where ten_bhat = '$title')";
