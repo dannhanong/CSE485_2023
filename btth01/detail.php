@@ -4,10 +4,9 @@
         $title = urldecode($_GET['title']);
         $sql = "SELECT ten_bhat,tomtat,tieude FROM baiviet WHERE ten_bhat = '$title'";
         $sql2 =  "SELECT ten_tgia FROM tacgia WHERE ma_tgia = (select ma_tgia from baiviet where ten_bhat = '$title')";
-        $stmt = $conn->prepare($sql);
         $stmt2 = $conn->prepare($sql2);
-
         
+        $stmt = $conn->prepare($sql);
         $stmt->execute();
         $stmt2 = $conn->query($sql2);
 
