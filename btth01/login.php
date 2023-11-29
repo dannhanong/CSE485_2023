@@ -1,5 +1,5 @@
 <?php
-    $conn = new mysqli("localhost","root","","BTTH01_CSE485");
+    $conn = new mysqli("localhost","root","123456","BTTH01_CSE485");
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $tk = $_POST['txtUser'];
         $mk = $_POST['txtPass'];
