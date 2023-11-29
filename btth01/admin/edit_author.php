@@ -1,3 +1,23 @@
+<?php
+    try{
+        $conn = new PDO("mysql:host=localhost;dbname=btth01_cse485","root","");
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Lấy giá trị từ form
+    $author_id = $_POST["txtCatId"];
+    $author_name = $_POST["txtCatName"];
+
+    // Cập nhật thông tin tác giả trong cơ sở dữ liệu
+    // $sql = "UPDATE authors SET author_name = '$author_name' WHERE author_id = $author_id";
+    // mysqli_query($conn, $sql);
+
+    // Điều hướng trở lại trang danh sách tác giả
+    header("Location: author.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,53 +60,28 @@
                 </div>
             </div>
         </nav>
+
     </header>
     <main class="container mt-5 mb-5">
         <div class="row">
             <div class="col-sm">
-                <a href="author2.php" class="btn btn-success">Thêm mới</a>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Mã Tác Giả</th>
-                            <th scope="col">Tên tác giả</th>
-                            <th scope="col">Hình ảnh tác giả</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Sandy</td>
-                             <td><img src="đường dẫn đến hình ảnh của Sandy" alt="Hình ảnh của Sandy"></td>
-                             <td>
-    <a href="edit_author.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-</td>
-<td>
-    <a href="#" onclick="confirmDelete(1)"><i class="fa-solid fa-trash"></i></a>
-</td>
+                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin tác giả</h3>
+                <form action="process_update_author.php" method="post">
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatId">Mã tác giả</span>
+                        <input type="text" class="form-control" name="txtCatId" readonly value="<?php echo $author_id; ?>">
+                    </div>
 
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Lê Trung Ngân</td>
-                            <td><img src="đường dẫn đến hình ảnh của Lê Trung Ngân" alt="Hình ảnh của Lê Trung Ngân"></td>
-                            <td>
-    <a href="edit_author.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-</td>
-<td>
-    <a href="#" onclick="confirmDelete(1)"><i class="fa-solid fa-trash"></i></a>
-</td>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên tác giả</span>
+                        <input type="text" class="form-control" name="txtCatName" value="Khánh Ngọc">
+                    </div>
 
-                        </tr>
-   
-                        </tr>
-                        
-                        <!-- Thêm các dòng dữ liệu khác tương tự -->
-                    </tbody>
-                </table>
+                    <div class="form-group float-end">
+                        <input type="submit" value="Lưu lại" class="btn btn-success">
+                        <a href="author.php" class="btn btn-warning">Quay lại</a>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
@@ -94,12 +89,5 @@
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script>
-        function confirmDelete(authorId) {
-            if (confirm('Bạn có chắc muốn xóa không?')) {
-                window.location.href = 'delete_author.php?id=' + authorId;
-            }
-        }
-    </script>
 </body>
 </html>
