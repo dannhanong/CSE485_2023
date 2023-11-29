@@ -3,13 +3,13 @@ create database BTTH01_CSE485;
 use BTTH01_CSE485;
 
 CREATE TABLE tacgia (
-    ma_tgia INT UNSIGNED PRIMARY KEY,
+    ma_tgia INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     ten_tgia VARCHAR(100) NOT NULL,
     hinh_tgia VARCHAR(100)
 );
 
 CREATE TABLE baiviet (
-    ma_bviet INT UNSIGNED PRIMARY KEY,
+    ma_bviet INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     tieude VARCHAR(200) NOT NULL,
     ten_bhat VARCHAR(100) NOT NULL,
     ma_tloai INT UNSIGNED NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE baiviet (
 );
 
 CREATE TABLE theloai (
-    ma_tloai INT UNSIGNED PRIMARY KEY,
+    ma_tloai INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     ten_tloai VARCHAR(50) NOT NULL
 );
 
@@ -179,9 +179,7 @@ VALUES (
 CREATE TABLE users (
     user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    password VARCHAR(100) NOT NULL
 );
 
 -- Truy vấn
