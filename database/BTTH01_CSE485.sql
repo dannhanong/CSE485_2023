@@ -80,7 +80,11 @@ VALUES (
 INSERT INTO baiviet (ma_bviet, tieude, ten_bhat, ma_tloai, tomtat, ma_tgia, ngayviet)
 VALUES (
 3,
+<<<<<<< HEAD
 "Cuộc đời có mấy ngày mai?", "Phôi pha", 2, 
+=======
+"Cuộc đời có mấy ngày mai?", "Phôi phai", 2, 
+>>>>>>> kien
 "Đêm nay, trời quang mây tạnh, trong người nghe hoang vắng và tôi ngồi đây \“Ôm lòng đêm, Nhìn vầng trăng mới về\” mà ngậm ngùi \“Nhớ chân giang hồ. Ôi phù du, từng tuổi xuân đã già\”", 
 4, "2014/3/13"
 );
