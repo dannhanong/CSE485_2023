@@ -68,8 +68,10 @@ END //
 DELIMITER ;
 
 -- k) Thêm mới cột SLBaiViet vào trong bảng theloai. Tạo 1 trigger có tên tg_CapNhatTheLoai để khi thêm/sửa/xóa bài viết thì số lượng bài viết trong bảng theloai được cập nhật theo
+DELIMITER //
+
 ALTER TABLE theloai
-ADD COLUMN SLBaiViet INT DEFAULT 0;
+ADD COLUMN SLBaiViet INT DEFAULT 0; -- chay lenh them truoc
 
 CREATE TRIGGER tg_CapNhatTheLoai
 AFTER INSERT ON baiviet
@@ -78,4 +80,6 @@ BEGIN
    UPDATE theloai
    SET SLBaiViet = SLBaiViet + 1
    WHERE ma_tloai = NEW.ma_tloai;
-END;
+END //
+
+DELIMITER ;
