@@ -1,49 +1,3 @@
-create database BTTH01_CSE485;
-
-use BTTH01_CSE485;
-
-CREATE TABLE tacgia (
-    ma_tgia INT UNSIGNED PRIMARY KEY,
-    ten_tgia NVARCHAR(100) NOT NULL,
-    hinh_tgia NVARCHAR(100)
-);
-
-CREATE TABLE baiviet (
-    ma_bviet INT UNSIGNED PRIMARY KEY,
-    tieude NVARCHAR(200) NOT NULL,
-    ten_bhat NVARCHAR(100) NOT NULL,
-    ma_tloai INT UNSIGNED NOT NULL,
-    tomtat TEXT NOT NULL,
-    noidung TEXT,
-    ma_tgia INT UNSIGNED,
-    ngayviet DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    hinhanh NVARCHAR(200)
-);
-
-CREATE TABLE theloai (
-    ma_tloai INT UNSIGNED PRIMARY KEY,
-    ten_tloai NVARCHAR(50) NOT NULL
-);
-
--- Thiết lập ràng buộc cho bảng "baiviet"
-ALTER TABLE baiviet
-ADD CONSTRAINT fk_bviet_tloai
-FOREIGN KEY (ma_tloai)
-REFERENCES theloai(ma_tloai);
-
-ALTER TABLE baiviet
-ADD CONSTRAINT fk_bviet_tgia
-FOREIGN KEY (ma_tgia)
-REFERENCES tacgia(ma_tgia);
-
--- Thiết lập ràng buộc cho bảng "theloai"
-ALTER TABLE baiviet
-ADD CONSTRAINT fk_bviet_tloai
-FOREIGN KEY (ma_tloai)
-REFERENCES theloai(ma_tloai);
-
-
-
 -- Truy vấn
 
 -- a) Liệt kê các bài viết về các bài hát thuộc thể loại Nhạc trữ tình
@@ -114,8 +68,10 @@ END //
 DELIMITER ;
 
 -- k) Thêm mới cột SLBaiViet vào trong bảng theloai. Tạo 1 trigger có tên tg_CapNhatTheLoai để khi thêm/sửa/xóa bài viết thì số lượng bài viết trong bảng theloai được cập nhật theo
+DELIMITER //
+
 ALTER TABLE theloai
-ADD COLUMN SLBaiViet INT DEFAULT 0;
+ADD COLUMN SLBaiViet INT DEFAULT 0; -- chay lenh them truoc
 
 CREATE TRIGGER tg_CapNhatTheLoai
 AFTER INSERT ON baiviet
@@ -124,13 +80,6 @@ BEGIN
    UPDATE theloai
    SET SLBaiViet = SLBaiViet + 1
    WHERE ma_tloai = NEW.ma_tloai;
-END;
+END //
 
--- l) Bổ sung thêm bảng Users để lưu thông tin Tài khoản đăng nhập và sử dụng cho chức năng Đăng nhập/Quản trị trang web
-CREATE TABLE users (
-    user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+DELIMITER ;
