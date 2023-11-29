@@ -1,5 +1,5 @@
 
-<?php include 'Components/header/header.php';
+<?php include 'Components/header.php';
          try{
             $conn = new PDO("mysql:host=localhost;dbname=BTTH01_CSE485","root","");
           
@@ -56,4 +56,4 @@
         <?php endforeach; ?>
               
     </main>
-    <?php include 'Components/footer/footer.php'?>
+    <?php include 'Components/footer.php'?>

@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
 <?php
     include './admin/connection.php';
 ?>
-<?php include './Components/header/header.php'?>  
+<?php include './Components/header.php'?>  
         <div id="carouselExampleIndicators" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -98,7 +90,5 @@
             </div>
         </div>
     </main>
-    <?php include 'Components/footer/footer.php'?>
-</body>
-</html>
-    
+    <?php include 'Components/footer.php'?>
+
