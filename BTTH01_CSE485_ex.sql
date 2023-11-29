@@ -42,48 +42,6 @@ ADD CONSTRAINT fk_bviet_tloai
 FOREIGN KEY (ma_tloai)
 REFERENCES theloai(ma_tloai);
 
--- Thêm dữ liệu cho bảng "tacgia"
-
-INSERT INTO tacgia (ma_tgia, ten_tgia, hinh_tgia) VALUES
-(1, 'Tác giả 1', 'hinh_tac_gia_1.jpg'),
-(2, 'Tác giả 2', 'hinh_tac_gia_2.jpg'),
-(3, 'Tác giả 3', 'hinh_tac_gia_3.jpg'),
-(4, 'Tác giả 4', NULL),
-(5, 'Tác giả 5', 'hinh_tac_gia_5.jpg'),
-(6, 'Tác giả 6', 'hinh_tac_gia_6.jpg'),
-(7, 'Tác giả 7', 'hinh_tac_gia_7.jpg'),
-(8, 'Tác giả 8', NULL),
-(9, 'Tác giả 9', 'hinh_tac_gia_9.jpg'),
-(10, 'Tác giả 10', 'hinh_tac_gia_10.jpg');
-
---Thêm dữ liệu cho bảng "theloai"
-
-INSERT INTO theloai (ma_tloai, ten_tloai) VALUES
-(1, 'Thể loại 1'),
-(2, 'Thể loại 2'),
-(3, 'Thể loại 3'),
-(4, 'Thể loại 4'),
-(5, 'Thể loại 5'),
-(6, 'Thể loại 6'),
-(7, 'Thể loại 7'),
-(8, 'Thể loại 8'),
-(9, 'Thể loại 9'),
-(10, 'Thể loại 10');
-
---Thêm dữ liệu cho bảng "baiviet"
-
-INSERT INTO baiviet (ma_bviet, tieude, ten_bhat, ma_tloai, tomtat, noidung, ma_tgia, ngayviet, hinhanh) VALUES
-(1, 'Tiêu đề 1', 'Bài hát 1', 1, 'Tóm tắt bài viết 1', 'Nội dung bài viết 1', 1, '2023-11-29 12:00:00', 'hinh_bai_viet_1.jpg'),
-(2, 'Tiêu đề 2', 'Bài hát 2', 2, 'Tóm tắt bài viết 2', 'Nội dung bài viết 2', 2, '2023-11-30 10:30:00', 'hinh_bai_viet_2.jpg'),
-(3, 'Tiêu đề 3', 'Bài hát 3', 1, 'Tóm tắt bài viết 3', 'Nội dung bài viết 3', 3, '2023-12-01 15:45:00', 'hinh_bai_viet_3.jpg'),
-(4, 'Tiêu đề 4', 'Bài hát 4', 3, 'Tóm tắt bài viết 4', 'Nội dung bài viết 4', 4, '2023-12-02 08:00:00', 'hinh_bai_viet_4.jpg'),
-(5, 'Tiêu đề 5', 'Bài hát 5', 2, 'Tóm tắt bài viết 5', 'Nội dung bài viết 5', 5, '2023-12-03 14:20:00', 'hinh_bai_viet_5.jpg'),
-(6, 'Tiêu đề 6', 'Bài hát 6', 4, 'Tóm tắt bài viết 6', 'Nội dung bài viết 6', 6, '2023-12-04 11:10:00', 'hinh_bai_viet_6.jpg'),
-(7, 'Tiêu đề 7', 'Bài hát 7', 3, 'Tóm tắt bài viết 7', 'Nội dung bài viết 7', 7, '2023-12-05 17:30:00', 'hinh_bai_viet_7.jpg'),
-(8, 'Tiêu đề 8', 'Bài hát 8', 5, 'Tóm tắt bài viết 8', 'Nội dung bài viết 8', 8, '2023-12-06 09:45:00', 'hinh_bai_viet_8.jpg'),
-(9, 'Tiêu đề 9', 'Bài hát 9', 4, 'Tóm tắt bài viết 9', 'Nội dung bài viết 9', 9, '2023-12-07 13:15:00', 'hinh_bai_viet_9.jpg'),
-(10, 'Tiêu đề 10', 'Bài hát 10', 2, 'Tóm tắt bài viết 10', 'Nội dung
-
 
 
 -- Truy vấn
