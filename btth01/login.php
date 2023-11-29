@@ -1,3 +1,18 @@
+<?php
+    try{
+        $conn = new PDO("mysql:host=localhost;dbname=BooksManagementSystem","root","123456");
+
+        $sql = "select Title, PublishedYear from Books";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $books = $stmt->fetchAll();
+
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
