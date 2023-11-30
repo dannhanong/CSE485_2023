@@ -5,10 +5,12 @@ try {
     $db = new DB();
     $db->connect();
 
+    
     // Lấy dữ liệu từ CSDL
     $table = "theloai"; 
     $columns = "*"; 
     $condition = ""; 
+    
     $result = $db->selectData($table, $columns, $condition);
 } catch (Exception $e) {
     $error_message = $e->getMessage();
