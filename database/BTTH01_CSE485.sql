@@ -3,13 +3,13 @@ create database BTTH01_CSE485;
 use BTTH01_CSE485;
 
 CREATE TABLE tacgia (
-    ma_tgia INT UNSIGNED PRIMARY KEY,
+    ma_tgia INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     ten_tgia VARCHAR(100) NOT NULL,
     hinh_tgia VARCHAR(100)
 );
 
 CREATE TABLE baiviet (
-    ma_bviet INT UNSIGNED PRIMARY KEY,
+    ma_bviet INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     tieude VARCHAR(200) NOT NULL,
     ten_bhat VARCHAR(100) NOT NULL,
     ma_tloai INT UNSIGNED NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE baiviet (
 );
 
 CREATE TABLE theloai (
-    ma_tloai INT UNSIGNED PRIMARY KEY,
+    ma_tloai INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     ten_tloai VARCHAR(50) NOT NULL
 );
 
@@ -80,11 +80,7 @@ VALUES (
 INSERT INTO baiviet (ma_bviet, tieude, ten_bhat, ma_tloai, tomtat, ma_tgia, ngayviet)
 VALUES (
 3,
-<<<<<<< HEAD
 "Cuộc đời có mấy ngày mai?", "Phôi pha", 2, 
-=======
-"Cuộc đời có mấy ngày mai?", "Phôi phai", 2, 
->>>>>>> kien
 "Đêm nay, trời quang mây tạnh, trong người nghe hoang vắng và tôi ngồi đây \“Ôm lòng đêm, Nhìn vầng trăng mới về\” mà ngậm ngùi \“Nhớ chân giang hồ. Ôi phù du, từng tuổi xuân đã già\”", 
 4, "2014/3/13"
 );
@@ -184,8 +180,25 @@ CREATE TABLE users (
     user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
     pass VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    email VARCHAR(100) NOT NULL
 );
 insert into users (username, pass, email) values
 ('abc123', 'abc123', 'abc@gmail.com')
+
+DELIMITER //
+CREATE FUNCTION kTraLogin(tk varchar(50), mk varchar(50))
+RETURNS int
+READS SQL DATA
+BEGIN
+	declare result int;
+    if exists (select * from users where username = tk) then
+		if exists (select * from users where username = tk and pass = mk) then
+			set result = 1; -- đúng 
+		else
+			set result = -1; -- sai mật khẩu
+		end if;
+        else
+			set result = -2; -- sai tài khoản
+		end if;
+        return result;
+END //DELIMITER ;
