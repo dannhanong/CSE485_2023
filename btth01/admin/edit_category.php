@@ -17,6 +17,7 @@ try {
     $columns = "*";
     $condition = "ma_tloai = $ma_tloai";
     $result = $db->selectData($table, $columns, $condition);
+    
 
     // Kiểm tra nếu có dữ liệu
     if ($result->num_rows > 0) {
@@ -36,7 +37,7 @@ try {
             $data = array('ten_tloai' => $ten_tloai_moi);
             $condition = "ma_tloai = $ma_tloai";
             $db->updateData($table, $data, $condition);
-
+            
             // Chuyển hướng về trang danh sách thể loại
             header("Location: category.php");
             exit;

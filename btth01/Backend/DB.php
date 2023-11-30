@@ -76,12 +76,13 @@ class DB
     public function deleteData($table, $condition)
     {
         $sql = "DELETE FROM $table WHERE $condition";
-
+        
         if (!$this->conn->query($sql)) {
             throw new Exception("Lỗi xóa dữ liệu: " . $this->conn->error);
+        } else{
+            $this->resetAutoIncrement($table);
         }
     }
-
     // Phương thức thực hiện truy vấn lấy dữ liệu
     public function selectData($table, $columns = "*", $condition = "")
     {
@@ -98,16 +99,42 @@ class DB
 
         return $result;
     }
+// Phương thức đếm số lượng dữ liệu
+public function countData($table, $condition = "")
+{
+    $sql = "SELECT COUNT(*) as count FROM $table";
+
+    // Nếu có điều kiện, thêm vào câu truy vấn
+    if (!empty($condition)) {
+        $sql .= " WHERE $condition";
+    }
+
+    $result = $this->conn->query($sql);
+
+    if (!$result) {
+        throw new Exception("Lỗi truy vấn đếm: " . $this->conn->error);
+    }
+
+    $row = $result->fetch_assoc();
+
+    return $row['count'];
 }
 
-// Sử dụng class DB
-$db = new DB();
-try {
-    $db->connect();
-    // Thực hiện các thao tác với cơ sở dữ liệu ở đây
-} catch (Exception $e) {
-    echo "Lỗi: " . $e->getMessage();
-} finally {
-    $db->close();
+// Phương thức để đặt lại giá trị AUTO_INCREMENT của bảng
+public function resetAutoIncrement($table)
+{
+    try {
+        // Số lượng bản ghi trong bảng
+        $recordCount = $this->countData($table);
+
+        // Vòng lặp để đặt lại giá trị ID
+        for ($i = 1; $i <= $recordCount; $i++) {
+            $resetQuery = "ALTER TABLE $table AUTO_INCREMENT = $i";
+            $this->conn->query($resetQuery);
+        }
+    } catch (Exception $e) {
+        throw new Exception("Lỗi: " . $e->getMessage());
+    }
+}
 }
 ?>
