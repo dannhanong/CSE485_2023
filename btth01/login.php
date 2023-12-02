@@ -1,10 +1,12 @@
 <?php
+    session_start();
+    ob_start();
     include_once "admin/connection.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $tk = $_POST['txtUser'];
         $mk = $_POST['txtPass'];
 
-        $kiemTra = "SELECT kTraLogin (?, ?) as giaTri";
+        $kiemTra = "SELECT * FROM users WHERE `acc`=? AND `pass`=?";
         $stmt = $conn->prepare($kiemTra);
 
         // Gán giá trị cho prepared
@@ -12,27 +14,23 @@
         $stmt->bindParam(2, $mk, PDO::PARAM_STR);
         $stmt->execute();
 
-        // Lấy giá trị trả về
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $giaTri = $result['giaTri'];
+        $giaTri = $stmt->fetchAll();
+
+        if(count($giaTri) > 0){     
+            $_SESSION['username'] = $giaTri[0]['username'];     
+            $role = $giaTri[0]['role'];
+            $_SESSION['role'] = $role;
+            if($role == 1){
+                header("Location: ./admin/index.php");
+                exit;
+            }else
+                header("Location: index.php");
+        }else{
+            $message = "Thông tin đăng nhập không chính xác.";
+        }
+
         $stmt->closeCursor(); 
         $conn=null;
-
-        if($tk != '' && $mk != '' ){
-            if($giaTri == 1){
-                header("Location: ./admin/index.php");
-                exit();
-            }
-            else if($giaTri==-1){
-                echo "<script>alert('Mật khẩu sai, kiểm tra lại!');</script>";
-
-            }
-            elseif($giaTri==-2){
-                echo "<script>alert('Tài khoản sai, kiểm tra lại!');</script>";
-            }else{
-                echo "<script>alert('Vui lòng kiểm tra lại thông tin đăng nhập!');</script>";
-            }
-        }
     }
 ?>
 <!DOCTYPE html>
@@ -64,7 +62,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="POST">
+                        <form action="login.php" method="POST">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtUser" ><i class="fas fa-user"></i></span>
                                 <input type="text" id="1" name="txtUser" class="form-control" placeholder="username" >
@@ -82,7 +80,7 @@
                                 <input type="submit" value="Login" class="btn float-end login_btn">
                             </div>
                             <br> <br>
-                            <span id="erorDi" style="text-align: center; color: red"></span>
+                            <span style="text-align: center; color: red; margin-left: 40px"><?php if(isset($message) && ($message!="" )){echo $message;} ?></span>
                         </form>
                     </div>
                     <div class="card-footer">

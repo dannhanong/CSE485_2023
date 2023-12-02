@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    ob_start();
+    if(isset($_SESSION['role'])){
+        $username = $_SESSION['username'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +33,10 @@
                     <a class="nav-link active" aria-current="page" href="./">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="./login.php">Đăng nhập</a>
+                    <a class="nav-link" href="./login.php"><?php if(isset($username)) echo $username; ?></a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="./login.php"><?php unset($_SESSION['role']);?><?php if(isset($username)){echo"Đăng xuất";} else {echo "Đăng nhập";}?></a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
