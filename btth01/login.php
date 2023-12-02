@@ -28,6 +28,9 @@
         }else{
             $message = "Thông tin đăng nhập không chính xác.";
         }
+        if($tk == '' or $mk == ''){
+            $message = "Vui lòng nhập đầy đủ thông tin.";
+        }
 
         $stmt->closeCursor(); 
         $conn=null;
@@ -80,7 +83,7 @@
                                 <input type="submit" value="Login" class="btn float-end login_btn">
                             </div>
                             <br> <br>
-                            <span style="text-align: center; color: red; margin-left: 40px"><?php if(isset($message) && ($message!="" )){echo $message;} ?></span>
+                            <div style="color: red; text-align: center;"><?php if(isset($message) && ($message!="" )){echo $message;} ?></div>
                         </form>
                     </div>
                     <div class="card-footer">
