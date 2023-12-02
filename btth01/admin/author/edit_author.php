@@ -1,3 +1,15 @@
+<?php
+    include_once "../connection.php";
+    $id = $_GET['id'];
+    if(isset($_POST['txttentacgia'])){
+        $name = $_POST['txttentacgia'];
+        $sqlUpdate = "UPDATE tacgia SET `ten_tgia`='$name' where `ma_tgia`='$id'";
+        $stmt = $conn->prepare($sqlUpdate);
+        $stmt->execute();
+        $conn=null;
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,73 +32,44 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">  
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="./">Trang chủ</a>
+                        <a class="nav-link" aria-current="page" href="../index.php">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.php">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="category.php">Thể loại</a>
+                        <a class="nav-link " href="../category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active fw-bold" href="author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="article.php">Bài viết</a>
+                        <a class="nav-link" href="../article/article.php">Bài viết</a>
                     </li>
                 </ul>
                 </div>
             </div>
         </nav>
+
     </header>
     <main class="container mt-5 mb-5">
         <div class="row">
             <div class="col-sm">
-                <a href="author2.php" class="btn btn-success">Thêm mới</a>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Mã Tác Giả</th>
-                            <th scope="col">Tên tác giả</th>
-                            <th scope="col">Hình ảnh tác giả</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Sandy</td>
-                             <td><img src="đường dẫn đến hình ảnh của Sandy" alt="Hình ảnh của Sandy"></td>
-                             <td>
-    <a href="edit_author.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-</td>
-<td>
-    <a href="#" onclick="confirmDelete(1)"><i class="fa-solid fa-trash"></i></a>
-</td>
+                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin tác giả</h3>
+                <form action="" method="POST">
 
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Lê Trung Ngân</td>
-                            <td><img src="đường dẫn đến hình ảnh của Lê Trung Ngân" alt="Hình ảnh của Lê Trung Ngân"></td>
-                            <td>
-    <a href="edit_author.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-</td>
-<td>
-    <a href="#" onclick="confirmDelete(1)"><i class="fa-solid fa-trash"></i></a>
-</td>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên tác giả</span>
+                        <input type="text" class="form-control" name="txttentacgia" value="">
+                    </div>
 
-                        </tr>
-   
-                        </tr>
-                        
-                        <!-- Thêm các dòng dữ liệu khác tương tự -->
-                    </tbody>
-                </table>
+                    <div class="form-group float-end">
+                        <input type="submit" name="btSave" value="Lưu lại" class="btn btn-success">
+                        <a href="author.php" class="btn btn-warning">Quay lại</a>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
@@ -94,12 +77,5 @@
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script>
-        function confirmDelete(authorId) {
-            if (confirm('Bạn có chắc muốn xóa không?')) {
-                window.location.href = 'delete_author.php?id=' + authorId;
-            }
-        }
-    </script>
 </body>
 </html>

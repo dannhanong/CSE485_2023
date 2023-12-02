@@ -1,26 +1,26 @@
 <?php
-    $conn = new mysqli("localhost","root","","BTTH01_CSE485");
+    include_once "admin/connection.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $tk = $_POST['txtUser'];
         $mk = $_POST['txtPass'];
 
-        $kiemTra = "SELECT kTraLogin (?, ?)";
+        $kiemTra = "SELECT kTraLogin (?, ?) as giaTri";
         $stmt = $conn->prepare($kiemTra);
 
         // Gán giá trị cho prepared
-        $stmt->bind_param('ss', $tk, $mk);
+        $stmt->bindParam(1, $tk, PDO::PARAM_STR);
+        $stmt->bindParam(2, $mk, PDO::PARAM_STR);
         $stmt->execute();
 
         // Lấy giá trị trả về
-        $stmt->bind_result($giaTri);
-        $stmt->fetch();
-
-        $stmt->close();
-        $conn->close();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $giaTri = $result['giaTri'];
+        $stmt->closeCursor(); 
+        $conn=null;
 
         if($tk != '' && $mk != '' ){
             if($giaTri == 1){
-                header("Location: index.php");
+                header("Location: ./admin/index.php");
                 exit();
             }
             else if($giaTri==-1){
@@ -72,7 +72,7 @@
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
-                                <input type="text" id="2" name="txtPass" class="form-control" placeholder="password" >
+                                <input type="password" id="2" name="txtPass" class="form-control" placeholder="password" >
                             </div>
                             
                             <div class="row align-items-center remember">
@@ -100,10 +100,6 @@
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
     </footer>
-<<<<<<<<< Temporary merge branch 1
-    <script src="login.js"></script>
-=========
->>>>>>>>> Temporary merge branch 2
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
 </body>
