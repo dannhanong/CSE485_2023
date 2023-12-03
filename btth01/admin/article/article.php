@@ -4,6 +4,7 @@
     $stmt=$conn->prepare($sqlSelect);
     $stmt->execute();
     $kq = $stmt->fetchAll();
+    $_SESSION['soAr'] = count($kq);
     $conn=null;
 ?>
 

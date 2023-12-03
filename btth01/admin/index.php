@@ -1,5 +1,6 @@
-
-<?php include 'Components/admin_header.php'?>
+<?php 
+include 'Components/admin_header.php'
+?>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
@@ -25,7 +26,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            10
+                            <?php if(isset($_SESSION['soCat'])) echo $_SESSION['soCat'] ?>
                         </h5>
                     </div>
                 </div>
@@ -39,7 +40,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            20
+                            <?php if(isset($_SESSION['soAu'])) echo $_SESSION['soAu'] ?>
                         </h5>
                     </div>
                 </div>
@@ -53,7 +54,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            110
+                            <?php if(isset($_SESSION['soAr'])) echo $_SESSION['soAr'] ?>
                         </h5>
                     </div>
                 </div>

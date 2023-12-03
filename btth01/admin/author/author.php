@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    ob_start();
     include "..\connection.php";
     $sqlSelect = "select * from tacgia";
     $stmt = $conn->prepare($sqlSelect); 
@@ -6,6 +8,7 @@
 
     //$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $kq = $stmt->fetchAll();
+    $_SESSION['soAu'] = count($kq);
     $conn=null;
 ?>
 <!DOCTYPE html>
@@ -68,8 +71,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                       <?php
-                            
+                       <?php  
                             if(isset($kq) && (count($kq) > 0)){
                                 $i=1;
                                 foreach($kq as $item){
@@ -80,6 +82,7 @@
                                             <td><a href="edit_author.php?id='.$item['ma_tgia'].'"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                             <td><a href="deleteAuthor.php?id='.$item['ma_tgia'].'"><i class="fa-solid fa-trash"></i></a></td>
                                         </tr>';
+                                        
                                     $i++;
                                 }
                             }
