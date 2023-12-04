@@ -1,6 +1,10 @@
-
 <?php include 'Components/header.php';
-        include './admin/connection.php';
+         try{
+            $conn = new PDO("mysql:host=localhost;dbname=BTTH01_CSE485","root","");
+          
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
         $title = urldecode($_GET['title']);
         $sql = "SELECT ten_bhat,tomtat,tieude FROM baiviet WHERE ten_bhat = '$title'";
         $sql2 =  "SELECT ten_tgia FROM tacgia WHERE ma_tgia = (select ma_tgia from baiviet where ten_bhat = '$title')";
@@ -33,22 +37,22 @@
                             <img src="<?= $imageUrl ?>" class="img-fluid" alt="...">
                         </div>
                         <div class="col-sm-8">
-                            <h5 class="card-title mb-2">
-                                <a href="#" class="text-decoration-none"><?= $song['tieude'] ?></a>
-                            </h5>
-
-                            <p class="card-text"><span class="fw-bold">Tên bài hát: </span><?= $song['ten_bhat'] ?></p>
-                            <p class="card-text"><span class="fw-bold">Tóm tắt: </span><?= $song['tomtat'] ?></p>
-                            <p class="card-text"><span class="fw-bold">Nội dung: </span><?= $song['tomtat'] ?></p>
+                        <h5 class="card-title mb-2">
+                            <a href="#" class="text-decoration-none" ><?= $song['tieude']?></a>
+                        </h5>
+                            
+                        <p class="card-text"><span class="fw-bold" >Tên bài hát: </span><?= $song['ten_bhat'] ?></p>
+                        <p class="card-text"><span class="fw-bold">Tóm tắt: </span><?= $song['tomtat'] ?></p>
+                        <p class="card-text"><span class="fw-bold">Nội dung: </span><?= $song['tomtat'] ?></p>
 
                             <p class="card-text"><span class=" fw-bold">Tác giả: </span><?= $tacgia['ten_tgia'] ?></p>
 
-                        </div>
-                    </div>
-                <?php endif; ?>
+                        </div>     
+                    </div> 
+                    <?php endif; ?>
+                <?php endforeach; ?>
             <?php endforeach; ?>
         <?php endforeach; ?>
-    <?php endforeach; ?>
-
-</main>
-<?php include 'Components/footer.php' ?>
+              
+    </main>
+    <?php include 'Components/footer.php'?>

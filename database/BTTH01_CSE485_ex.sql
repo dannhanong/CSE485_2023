@@ -1,12 +1,3 @@
--- l) Bổ sung thêm bảng Users để lưu thông tin Tài khoản đăng nhập và sử dụng cho chức năng Đăng nhập/Quản trị trang web
-CREATE TABLE users (
-    user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
 -- Truy vấn
 
 -- a) Liệt kê các bài viết về các bài hát thuộc thể loại Nhạc trữ tình
