@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 
 <?php include '../Backend/DB.php';
 include 'Components/admin_header.php';
 $db = new DB();
     $db->connect();
 
+=======
+<?php 
+include 'Components/admin_header.php'
+>>>>>>> 2a66270ebc11f302fef34c4a59db8debc06a7f85
 ?>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
@@ -21,7 +26,7 @@ $db = new DB();
                     </div>
                 </div>
             </div>
-
+            
             <div class="col-sm-3">
                 <div class="card mb-2" style="width: 100%;">
                     <div class="card-body">
@@ -30,7 +35,11 @@ $db = new DB();
                         </h5>
 
                         <h5 class="h1 text-center">
+<<<<<<< HEAD
                         <?php echo $db -> countData("theloai")?>
+=======
+                            <?php if(isset($_SESSION['soCat'])) echo $_SESSION['soCat'] ?>
+>>>>>>> 2a66270ebc11f302fef34c4a59db8debc06a7f85
                         </h5>
                     </div>
                 </div>
@@ -44,7 +53,11 @@ $db = new DB();
                         </h5>
 
                         <h5 class="h1 text-center">
+<<<<<<< HEAD
                         <?php echo $db -> countData("tacgia")?>
+=======
+                            <?php if(isset($_SESSION['soAu'])) echo $_SESSION['soAu'] ?>
+>>>>>>> 2a66270ebc11f302fef34c4a59db8debc06a7f85
                         </h5>
                     </div>
                 </div>
@@ -58,7 +71,11 @@ $db = new DB();
                         </h5>
 
                         <h5 class="h1 text-center">
+<<<<<<< HEAD
                         <?php echo $db -> countData("baiviet")?>
+=======
+                            <?php if(isset($_SESSION['soAr'])) echo $_SESSION['soAr'] ?>
+>>>>>>> 2a66270ebc11f302fef34c4a59db8debc06a7f85
                         </h5>
                     </div>
                 </div>

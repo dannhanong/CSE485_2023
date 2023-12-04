@@ -1,4 +1,6 @@
 <?php
+session_start();
+ob_start();
 include '../Backend/DB.php';
 
 try {
@@ -12,6 +14,7 @@ try {
     $condition = ""; 
     
     $result = $db->selectData($table, $columns, $condition);
+    $_SESSION['soCat'] = mysqli_num_rows($result);
 } catch (Exception $e) {
     $error_message = $e->getMessage();
 }
