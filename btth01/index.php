@@ -1,5 +1,4 @@
-<?php
-include './admin/connection.php';  
+<?php 
 include 'Components/header.php'
 ?>  
         <div id="carouselExampleIndicators" class="carousel slide">
@@ -64,7 +63,6 @@ include 'Components/header.php'
         </div>
     </div>
 </div>
-
 
             <div class="col-sm-3">
                 <div class="card mb-2" style="width: 100%;">

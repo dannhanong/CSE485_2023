@@ -1,26 +1,26 @@
 <?php
-    $conn = new mysqli("localhost","root","","BTTH01_CSE485");
+    session_start();
+    ob_start();
+    include_once "./admin/connection.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $tk = $_POST['txtUser'];
         $mk = $_POST['txtPass'];
 
-        $kiemTra = "SELECT kTraLogin (?, ?)";
+        $kiemTra = "SELECT * FROM users WHERE `acc`=? AND `pass`=?";
         $stmt = $conn->prepare($kiemTra);
 
         // Gán giá trị cho prepared
-        $stmt->bind_param('ss', $tk, $mk);
+        $stmt->bindParam(1, $tk, PDO::PARAM_STR);
+        $stmt->bindParam(2, $mk, PDO::PARAM_STR);
         $stmt->execute();
 
         // Lấy giá trị trả về
         $stmt->bind_result($giaTri);
         $stmt->fetch();
 
-        $stmt->close();
-        $conn->close();
-
         if($tk != '' && $mk != '' ){
             if($giaTri == 1){
-                header("Location: admin");
+                header("Location: index.php");
                 exit();
             }
             else if($giaTri==-1){
@@ -33,6 +33,9 @@
                 echo "<script>alert('Vui lòng kiểm tra lại thông tin đăng nhập!');</script>";
             }
         }
+
+        $stmt->closeCursor(); 
+        $conn=null;
     }
 include 'Components/header_login.php'?>
     <main class="container mt-5 mb-5">
@@ -48,7 +51,7 @@ include 'Components/header_login.php'?>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="POST">
+                        <form action="login.php" method="POST">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtUser" ><i class="fas fa-user"></i></span>
                                 <input type="text" id="1" name="txtUser" class="form-control" placeholder="username" >
@@ -56,7 +59,7 @@ include 'Components/header_login.php'?>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
-                                <input type="text" id="2" name="txtPass" class="form-control" placeholder="password" >
+                                <input type="password" id="2" name="txtPass" class="form-control" placeholder="password" >
                             </div>
                             
                             <div class="row align-items-center remember">
@@ -66,7 +69,7 @@ include 'Components/header_login.php'?>
                                 <input type="submit" value="Login" class="btn float-end login_btn">
                             </div>
                             <br> <br>
-                            <span id="erorDi" style="text-align: center; color: red"></span>
+                            <div style="color: red; text-align: center;"><?php if(isset($message) && ($message!="" )){echo $message;} ?></div>
                         </form>
                     </div>
                     <div class="card-footer">

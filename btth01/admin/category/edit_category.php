@@ -54,7 +54,7 @@ if (isset($db)) {
 
 ?>
 
-<?php include 'Components/admin_header.php'?>
+<?php include '../Components/admin_header.php'?>
     <main class="container mt-5 mb-5">
         <div class="row">
             <div class="col-sm">
@@ -78,4 +78,4 @@ if (isset($db)) {
             </div>
         </div>
     </main>
-<?php include 'Components/admin_footer.php'?>
+<?php include '../Components/admin_footer.php'?>
