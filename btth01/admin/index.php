@@ -5,7 +5,7 @@ include 'Components/admin_header.php';
 $db = new DB();
     $db->connect();
 
-=======
+
 <?php 
 include 'Components/admin_header.php'
 >>>>>>> 2a66270ebc11f302fef34c4a59db8debc06a7f85
