@@ -1,5 +1,5 @@
 <?php
-    include_once "..\connection.php";
+    include_once "../connection.php";
     $sqlSelect = "SELECT * from baiviet";
     $stmt=$conn->prepare($sqlSelect);
     $stmt->execute();

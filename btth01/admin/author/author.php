@@ -1,5 +1,5 @@
 <?php
-include '../Backend/DB.php';
+include '../../Backend/DB.php';
 
 try {
     $db = new DB();
@@ -16,7 +16,7 @@ try {
 }
 ?>
 
-<?php include 'Components/admin_header.php' ?>
+<?php include '../Components/admin_header.php' ?>
 
 <main class="container mt-5 mb-5">
     <div class="row">
@@ -70,4 +70,4 @@ try {
         }
     </script>
 
-<?php include 'Components/admin_footer.php' ?>
+<?php include '../Components/admin_footer.php' ?>

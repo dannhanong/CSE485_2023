@@ -1,5 +1,5 @@
 <?php
-    include_once "..\connection.php";
+    include_once "../connection.php";
 
     if(isset($_POST['txtArTit']) && isset($_POST['txtArName']) && isset($_POST['txtTypeID']) && isset($_POST['txtTT']) 
         && isset($_POST['txtAuID']) && isset($_POST['txtArDay'])){

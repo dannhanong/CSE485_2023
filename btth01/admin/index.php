@@ -1,5 +1,10 @@
 
-<?php include 'Components/admin_header.php'?>
+<?php include '../Backend/DB.php';
+include 'Components/admin_header.php';
+$db = new DB();
+    $db->connect();
+
+?>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
@@ -25,7 +30,8 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            10
+                            <?php if(isset($_SESSION['soCat'])) echo $_SESSION['soCat'] ?>
+                        <?php echo $db -> countData("theloai")?>
                         </h5>
                     </div>
                 </div>
@@ -38,7 +44,8 @@
                             <a href="" class="text-decoration-none">Tác giả</a>
                         </h5>
                         <h5 class="h1 text-center">
-                            20
+                            <?php if(isset($_SESSION['soAu'])) echo $_SESSION['soAu'] ?>
+                        <?php echo $db -> countData("tacgia")?>
                         </h5>
                     </div>
                 </div>
@@ -52,7 +59,8 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            110
+                            <?php if(isset($_SESSION['soAr'])) echo $_SESSION['soAr'] ?>
+                        <?php echo $db -> countData("baiviet")?>
                         </h5>
                     </div>
                 </div>

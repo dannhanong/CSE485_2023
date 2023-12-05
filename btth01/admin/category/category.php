@@ -1,5 +1,5 @@
 <?php
-include '../Backend/DB.php';
+include '../../Backend/DB.php';
 
 try {
     $db = new DB();
@@ -21,7 +21,7 @@ if (isset($db)) {
 
 ?>
 
-<?php include 'Components/admin_header.php'?>
+<?php include '../Components/admin_header.php'?>
 <main class="container mt-5 mb-5">
     <div class="row">
         <div class="col-sm">
