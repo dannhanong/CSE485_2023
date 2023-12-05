@@ -1,4 +1,5 @@
-<?php 
+<?php
+include './admin/connection.php';  
 include 'Components/header.php'
 ?>  
         <div id="carouselExampleIndicators" class="carousel slide">

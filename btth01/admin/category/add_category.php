@@ -9,13 +9,13 @@ try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Kiểm tra xem trường tên thể loại có được điền hay không
         if (isset($_POST['txtCatName']) && !empty($_POST['txtCatName'])) {
-            $ten_tloai = $_POST['txtCatName']; 
+            $ten_tloai = $_POST['txtCatName']; // Đổi tên biến thành $ten_tloai
 
             // Thực hiện truy vấn thêm dữ liệu thể loại
             $data = array('ten_tloai' => $ten_tloai);
             $table = "theloai";
             $db->insertData($table, $data);
-            
+
             // Chuyển hướng về trang danh sách thể loại hoặc thực hiện hành động khác
             header("Location: category.php");
             exit;
@@ -34,7 +34,7 @@ if (isset($db)) {
 
 ?>
 
-<?php include '../Components/admin_header.php'?>
+<?php include 'Components/admin_header.php'?>
 <main class="container mt-5 mb-5">
     <div class="row">
         <div class="col-sm">
@@ -44,7 +44,7 @@ if (isset($db)) {
                     <?php echo $error_message; ?>
                 </div>
             <?php endif; ?>
-            <form action="add_category.php" method="post">
+            <form action="" method="post">
                 <div class="input-group mt-3 mb-3">
                     <span class="input-group-text" id="lblCatName">Tên thể loại</span>
                     <input type="text" class="form-control" name="txtCatName" required>
@@ -58,4 +58,4 @@ if (isset($db)) {
         </div>
     </div>
 </main>
-<?php include '../Components/admin_footer.php'?>
+<?php include 'Components/admin_footer.php'?>

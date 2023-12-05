@@ -1,57 +1,67 @@
-<?php include '../Components/admin_header.php'?>
-    <main class="container mt-5 mb-5">
-        <div class="row">
-            <div class="col-sm">
-                <a href="author2.php" class="btn btn-success">Thêm mới</a>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Mã Tác Giả</th>
-                            <th scope="col">Tên tác giả</th>
-                            <th scope="col">Hình ảnh tác giả</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Sandy</td>
-                             <td><img src="đường dẫn đến hình ảnh của Sandy" alt="Hình ảnh của Sandy"></td>
-                             <td>
-    <a href="edit_author.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-</td>
-<td>
-    <a href="#" onclick="confirmDelete(1)"><i class="fa-solid fa-trash"></i></a>
-</td>
+<?php
+include '../Backend/DB.php';
 
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Lê Trung Ngân</td>
-                            <td><img src="đường dẫn đến hình ảnh của Lê Trung Ngân" alt="Hình ảnh của Lê Trung Ngân"></td>
-                            <td>
-    <a href="edit_author.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-</td>
-<td>
-    <a href="#" onclick="confirmDelete(1)"><i class="fa-solid fa-trash"></i></a>
-</td>
+try {
+    $db = new DB();
+    $db->connect();
 
+    
+    // Thực hiện truy vấn lấy dữ liệu từ bảng tacgia
+    $result = $db->selectData("tacgia");
+
+    // Đóng kết nối sau khi lấy dữ liệu
+    $db->close();
+} catch (Exception $e) {
+    echo "Lỗi: " . $e->getMessage();
+}
+?>
+
+<?php include 'Components/admin_header.php' ?>
+
+<main class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-sm">
+            <a href="add_author.php" class="btn btn-success">Thêm mới</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã Tác Giả</th>
+                        <th scope="col">Tên tác giả</th>
+                        <th scope="col">Hình ảnh tác giả</th>
+                        <th>Sửa</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if ($result->num_rows > 0): ?>
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <tr>
+                                <th scope="row"><?php echo $row['ma_tgia']; ?></th>
+                                <td><?php echo $row['ten_tgia']; ?></td>
+                                <td>
+                                    <?php if (!empty($row['hinh_tgia'])): ?>
+                                        <img src="<?php echo $row['hinh_tgia']; ?>" alt="Hình ảnh của <?php echo $row['ten_tgia']; ?>">
+                                    <?php else: ?>
+                                        <p>Không có hình ảnh</p>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <a href="edit_author.php?id=<?php echo $row['ma_tgia']; ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                </td>
+                                <td>
+                                    <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5">Không có dữ liệu tác giả.</td>
                         </tr>
-   
-                        </tr>
-                        
-                        <!-- Thêm các dòng dữ liệu khác tương tự -->
-                    </tbody>
-                </table>
-            </div>
+                    <?php endif; ?>
+                </tbody>
+            </table>
         </div>
     </main>
-    <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
-        <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script>
         function confirmDelete(authorId) {
             if (confirm('Bạn có chắc muốn xóa không?')) {
@@ -60,3 +70,4 @@
         }
     </script>
 
+<?php include 'Components/admin_footer.php' ?>

@@ -1,8 +1,5 @@
-<?php include '../Backend/DB.php';
-include 'Components/admin_header.php';
-$db = new DB();
-$db->connect();
-?>
+
+<?php include 'Components/admin_header.php'?>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
@@ -28,7 +25,7 @@ $db->connect();
                         </h5>
 
                         <h5 class="h1 text-center">
-                            <?php if(isset($_SESSION['soCat'])) echo $_SESSION['soCat'] ?>
+                            10
                         </h5>
                     </div>
                 </div>
@@ -41,7 +38,7 @@ $db->connect();
                             <a href="" class="text-decoration-none">Tác giả</a>
                         </h5>
                         <h5 class="h1 text-center">
-                            <?php if(isset($_SESSION['soAu'])) echo $_SESSION['soAu'] ?>
+                            20
                         </h5>
                     </div>
                 </div>
@@ -55,7 +52,7 @@ $db->connect();
                         </h5>
 
                         <h5 class="h1 text-center">
-                            <?php if(isset($_SESSION['soAr'])) echo $_SESSION['soAr'] ?>
+                            110
                         </h5>
                     </div>
                 </div>
