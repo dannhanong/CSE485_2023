@@ -21,7 +21,7 @@
             $stmt->bindParam(6, $ngayviet, PDO::PARAM_STR);
             $stmt->execute();
             
-            header("Location: article.php");
+            header("Location: ../article.php");
             exit();
         } catch (Exception $e) {
             die("Lỗi: " . $e->getMessage());

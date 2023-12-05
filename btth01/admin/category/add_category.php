@@ -5,19 +5,15 @@ try {
     $db = new DB();
     $db->connect();
 
-    // Kiểm tra nếu có dữ liệu được gửi từ form
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Kiểm tra xem trường tên thể loại có được điền hay không
         if (isset($_POST['txtCatName']) && !empty($_POST['txtCatName'])) {
-            $ten_tloai = $_POST['txtCatName']; // Đổi tên biến thành $ten_tloai
+            $ten_tloai = $_POST['txtCatName']; 
 
-            // Thực hiện truy vấn thêm dữ liệu thể loại
             $data = array('ten_tloai' => $ten_tloai);
             $table = "theloai";
             $db->insertData($table, $data);
 
-            // Chuyển hướng về trang danh sách thể loại hoặc thực hiện hành động khác
-            header("Location: category.php");
+            header("Location: ../category.php");
             exit;
         } else {
             throw new Exception("Tên thể loại không được để trống.");
@@ -27,7 +23,6 @@ try {
     $error_message = $e->getMessage();
 }
 
-// Đóng kết nối sau khi hoàn thành mọi thao tác
 if (isset($db)) {
     $db->close();
 }

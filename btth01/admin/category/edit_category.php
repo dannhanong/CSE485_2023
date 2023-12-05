@@ -39,7 +39,7 @@ try {
             $db->updateData($table, $data, $condition);
             
             // Chuyển hướng về trang danh sách thể loại
-            header("Location: category.php");
+            header("Location: ../category.php");
             exit;
         }
     }

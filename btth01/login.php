@@ -17,7 +17,7 @@
         $giaTri = $stmt->fetchAll();
 
         if(count($giaTri) > 0){     
-            $_SESSION['username'] = $giaTri[0]['username'];     
+            $_SESSION['acc'] = $giaTri[0]['acc'];     
             $role = $giaTri[0]['role'];
             $_SESSION['role'] = $role;
             if($role == 1){

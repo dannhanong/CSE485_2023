@@ -15,7 +15,7 @@ try {
         $db->deleteData($table, $condition);
         
         // Chuyển hướng về trang danh sách thể loại
-        header("Location: category.php");
+        header("Location: ../category.php");
         exit;
     } else {
         throw new Exception("Không có mã thể loại được chọn để xóa");
