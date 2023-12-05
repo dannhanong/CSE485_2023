@@ -1,5 +1,4 @@
 <?php
-<<<<< HEAD:btth01/admin/author.php
 include '../Backend/DB.php';
 try {
     $db = new DB();

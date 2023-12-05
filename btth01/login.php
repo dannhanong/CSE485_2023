@@ -2,43 +2,37 @@
     session_start();
     ob_start();
     include_once "admin/connection.php";
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tk = $_POST['txtUser'];
         $mk = $_POST['txtPass'];
-
-        $kiemTra = "SELECT * FROM users WHERE `acc`=? AND `pass`=?";
+    
+        $kiemTra = "SELECT * FROM users WHERE `username`=? AND `pass`=?";
         $stmt = $conn->prepare($kiemTra);
-
-        // Gán giá trị cho prepared
+    
+        // Bind parameters
         $stmt->bindParam(1, $tk, PDO::PARAM_STR);
         $stmt->bindParam(2, $mk, PDO::PARAM_STR);
+    
+        // Execute the statement
         $stmt->execute();
-
-        // Lấy giá trị trả về
-        $stmt->bind_result($giaTri);
-        $stmt->fetch();
-
-        $stmt->close();
-        $conn->close();
-
-        if($tk != '' && $mk != '' ){
-            if($giaTri == 1){
-                header("Location: index.php");
-                exit();
-            }
-            else if($giaTri==-1){
-                echo "<script>alert('Mật khẩu sai, kiểm tra lại!');</script>";
-
-            }
-            elseif($giaTri==-2){
-                echo "<script>alert('Tài khoản sai, kiểm tra lại!');</script>";
-            }else{
-                echo "<script>alert('Vui lòng kiểm tra lại thông tin đăng nhập!');</script>";
-            }
+    
+        // Fetch the result
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        // Check the result
+        if ($result) {
+            // Successful login
+            header("Location: index.php");
+            exit();
+        } else {
+            // Unsuccessful login
+            echo "<script>alert('Vui lòng kiểm tra lại thông tin đăng nhập!');</script>";
         }
-
-        $stmt->closeCursor(); 
-        $conn=null;
+    
+        // Close the statement and connection
+        $stmt = null;
+        $conn = null;
     }
 include 'Components/header_login.php'?>
     <main class="container mt-5 mb-5">
@@ -87,4 +81,4 @@ include 'Components/header_login.php'?>
 
         </div>
     </main>
-    <?php include 'Components/footer.php'?>
+    <?php include 'Components/footer.php'; ?>
