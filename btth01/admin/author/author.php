@@ -1,12 +1,9 @@
 <?php
-<<<<<<< HEAD:btth01/admin/author.php
+<<<<< HEAD:btth01/admin/author.php
 include '../Backend/DB.php';
-
 try {
     $db = new DB();
     $db->connect();
-
-    
     // Thực hiện truy vấn lấy dữ liệu từ bảng tacgia
     $result = $db->selectData("tacgia");
 
